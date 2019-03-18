@@ -1,0 +1,51 @@
+<div class="list-group">
+
+  <span class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let todo of todos$ | async index as todoIndex">
+
+    <div class="d-flex w-100 justify-content-between">
+      <span>
+        <input type="checkbox" [(ngModel)]="todo.complete" (click)="isComplete(todo)">
+        <h5 class="mb-1" [ngClass]="{'done' : todo.complete}" *ngIf="!istodoTitleEdit[todo.id]" (dblclick)="todoTitleEdit(todo)">{{todo.todoTitle}}</h5>
+        <span *ngIf="istodoTitleEdit[todo.id]">
+          <input type="text" [(ngModel)]="todo.todoTitle" (keyup)="$event.keyCode == 13 && todoTitleSave(todo)">
+          <button type="button" class="btn btn-sm btn-outline-success ml-2" (click)="todoTitleSave(todo)">Save</button>
+          <button type="button" class="btn btn-sm btn-outline-danger ml-2" (click)="todoTitleCancel(todo)">Cancel</button>
+        </span>
+      </span>
+      <span id="delete" class="badge badge-danger" (click)="todoDelete(todo)">Delete</span>
+    </div>
+
+    <p class="mb-1" *ngIf="!istodoDetailEdit[todo.id]" (dblclick)="todoDetailEdit(todo)">{{todo.todoDetail}}</p>
+    <span id='todoDetailEdit' *ngIf="istodoDetailEdit[todo.id]">
+      <textarea class="form-control" [(ngModel)]="todo.todoDetail" rows="3"></textarea>
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="todoDetailSave(todo)">Save</button>
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="todoDetailCancel(todo)">Cancel</button>
+    </span>
+
+  </span>
+
+
+  <span id='todoInstall' *ngIf="isInsterTodo" class="list-group-item list-group-item-action flex-column align-items-start">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <input id="todoTitle" type="text" class="form-control" formControlName="todoTitle" placeholder="待辦事項">
+      <div *ngIf="showFieldHint('todoTitle')" class="alert alert-danger my-1" role="alert">
+        <div *ngFor="let item of form.controls['todoTitle'] | formErrors">
+          {{item}}
+        </div>
+      </div>
+
+      <textarea id="todoDetail" type="number" class="form-control" formControlName="todoDetail" rows="3"
+                placeholder="詳細內容"></textarea>
+      <div *ngIf="showFieldHint('todoDetail')" class="alert alert-danger my-1" role="alert">
+        <div *ngFor="let item of form.controls['todoDetail'] | formErrors">{{item}}</div>
+      </div>
+
+      <button type="submit" class="btn btn-sm btn-outline-success" [disabled]="form.invalid">Add</button>
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="todoInstallCancel()">Cancel</button>
+    </form>
+
+  </span>
+
+</div>

@@ -1,0 +1,23 @@
+<ngb-accordion [closeOthers]="true">
+  <ngb-panel id="static-{{listIndex+1}}" *ngFor="let list of lists$ | async index as listIndex">
+
+    <ng-template ngbPanelHeader>
+      <div class="d-flex align-items-center justify-content-between">
+        <h5 *ngIf="!islistTitleEdit[list.id]" (dblclick)="listTitleEdit(list)" class="m-0">{{list.listTitle}}</h5>
+        <span *ngIf="islistTitleEdit[list.id]">
+          <input type="text" [(ngModel)]="list.listTitle" (keyup)="$event.keyCode == 13 && listTitleSave(list)">
+          <button type="button" (click)="listTitleSave(list)" class="btn btn-sm btn-outline-success ml-2">Save</button>
+          <button type="button" (click)="listTitleCancel(list)" class="btn btn-sm btn-outline-danger ml-2">Cancel</button>
+        </span>
+        <div>
+          <button (click)="insterTodo(list.id)" [hidden]="!isInsterTodoButton[list.id]" class="btn btn-sm btn-outline-success ml-2">Inster</button>
+          <button ngbPanelToggle (click)="insterTodoButton(list.id)"  class="btn btn-sm btn-outline-primary ml-2">Show</button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template ngbPanelContent>
+      <app-todo [list]="list" (isInsterTodoButton)="isInsterTodoButton[list.id]" [(isInsterTodo)]="isInsterTodo[list.id]"></app-todo>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

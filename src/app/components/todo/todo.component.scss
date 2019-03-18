@@ -1,0 +1,38 @@
+h5 {
+  display: contents;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+[type="checkbox"] {
+  zoom: 1.5;
+  margin-right: 10px;
+}
+
+p, textarea, #todoDetailEdit [type="button"], #todoInstall [type="submit"], #todoInstall [type="button"] {
+  margin-top: 10px;
+  margin-left: 35px;
+}
+
+p {
+  white-space: pre-wrap;
+}
+
+textarea {
+  width: -webkit-fill-available;
+}
+
+#delete {
+  line-height: unset;
+}
+
+#inster {
+  line-height: 2.7;
+}
+
+#todoTitle {
+  width: auto;
+  margin-left: 35px;
+}

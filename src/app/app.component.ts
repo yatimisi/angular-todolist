@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 const template = `
+<app-navbar></app-navbar>
 <div class="container my-3">
   <router-outlet></router-outlet>
 </div>
@@ -11,5 +12,5 @@ const template = `
   template
 })
 export class AppComponent {
-  title = 'angular-todolist';
+  title = 'Todo-list';
 }

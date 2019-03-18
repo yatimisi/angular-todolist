@@ -1,4 +1,6 @@
 {
-  "/api/todos": "/todos",
-  "/api/todos/:id": "/todos/:id"
+  "/lists": "/lists",
+  "/lists/:id": "/lists/:id",
+  "/lists/:listId/todos": "/todos:listId",
+  "/lists/:listId/todos/:todoId": "/todos:listId/:todoId"
 }
