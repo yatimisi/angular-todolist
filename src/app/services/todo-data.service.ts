@@ -60,7 +60,11 @@ export class TodoDataService {
   updateTodoComplete(listId: number, todo: Todo): void {
     console.log(`${this.url}/${listId}/todos/${todo.id}`);
     console.log(todo);
-    this.http.patch<Todo>(`${this.url}/${listId}/todos/${todo.id}`, todo, httpOptions).pipe(
+    this.http.patch<Todo>(
+      `${this.url}/${listId}/todos/${todo.id}`,
+      { complete: todo.complete },
+      httpOptions
+    ).pipe(
       tap(data => this.loggingService.log(data, 'Update Complete:')),
       catchError(this.handleError<Todo>('Complete Update'))
     );

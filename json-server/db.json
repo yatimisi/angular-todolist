@@ -20,12 +20,20 @@
     {
       "todoTitle": "5",
       "todoDetail": "5",
-      "id": 4
+      "id": 4,
+      "complete": false
     },
     {
       "todoTitle": "55",
       "todoDetail": "55",
-      "id": 5
+      "id": 5,
+      "complete": false
+    },
+    {
+      "todoTitle": "ㄧ",
+      "todoDetail": "二",
+      "id": 6,
+      "complete": true
     }
   ],
   "todos2": [
